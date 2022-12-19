@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        @font-face { 
+            font-family: "GothamProRegular";
+            src: url("fonts/GothamProRegular.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --yellow-color: rgb(255, 208, 0);
+            --green-color: rgb(78, 156, 78);
+            --dark-grey-color: rgb(169, 169, 169);
+        }
+
+        .yellow-text {
+            color: var(--yellow-color);
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .grey-text {
+            color: var(--dark-grey-color);
+        }
+
+
+        .wrapper {
+            width: 400px;
+            min-height: 600px;
+            margin: 0 auto;
+            border: 2px solid var(--dark-grey-color);
+            position: relative;
+        }
+
+        .circleDiagram {
+            width: 280px;
+            height: 280px;
+            margin: 100px auto;
+            display: flex;
+            border-radius: 50%;
+            transform: rotate(20deg);
+            background-image: conic-gradient(var(--yellow-color) 0 120.76deg, var(--green-color) 0 235.96deg, rgb(213, 213, 213) 0 320deg, white 0 100%);
+        }
+
+        .circleDiagram-content {
+            width: 92%;
+            height: 92%;
+            margin: auto;
+            transform: rotate(-20deg);
+            border-radius: 50%;
+            background: white;
+            text-align: center;
+            display: flex;
+        }
+
+        .circleDiagram .grey-text {
+            font-size: 14px;
+        }
+
+        .circleDiagram-content-text {
+            margin: auto;
+            padding-top: 20px;
+            position: relative;
+        }
+
+        .flag-image {
+            position: absolute;
+            top: -25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .percent {
+            font-size: 50%;
+        }
+
+        p.percent {
+            font-family: "GothamProRegular", sans-serif;
+            font-size: 44px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min-content;
+            margin-bottom: -10px;
+        }
+
+        p.percent+p {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        sup.percent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: var(--dark-grey-color);
+            font-size: 20px;
+        }
+
+        .triangle-block {
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            column-gap: 5px;
+            color: var(--green-color);
+            font-size: 18px;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-bottom: 10px solid rgb(78, 156, 78);
+            border-radius: 3px;
+            align-self: flex-start;
+        }
+
+        .squareDiagram {
+            width: 280px;
+            margin: -40px auto 20px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+        }
+
+        .squareDiagram>div {
+            display: flex;
+        }
+
+        .squareDiagram>div p:first-child {
+            flex-basis: 40%;           
+            font-weight: bold;
+        }
+
+        .squareDiagram>div p:nth-child(2) {
+            flex-basis: 20%;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .squareDiagram .grey-text {
+            font-weight: normal;
+        }
+
+        span.grey-text  {
+            display: inline-block;
+            padding-top: 3px;
+        }
+
+        .diagram-percent {
+            width: 100px;
+            line-height: 35px;
+            font-size: 14px;
+            text-align: right;
+            padding-right: 3px;
+            margin: 0 0 0 auto;
+            border: 2px solid rgb(218, 218, 218);
+            border-radius: 5px;
+        }
+
+        .promouter .diagram-percent {
+            background: linear-gradient(to right, rgb(146, 219, 146) 30%, rgb(244, 244, 244) 30% 100%);
+            position: relative;
+        }
+
+        .promouter .diagram-percent::before {
+            content: '';
+            display: block;
+            width: 33%;
+            height: 30px;
+            background: var(--green-color);
+            position: absolute;
+            border-radius: 3px 0 0 0;
+        }
+
+        .skeptic .diagram-percent {
+            background: linear-gradient(to right, rgb(247, 237, 142) 37%, rgb(244, 244, 244) 37% 100%);
+            position: relative;
+        }
+
+        .skeptic .diagram-percent::before {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 30px;
+            background: var(--yellow-color);
+            position: absolute;
+            border-radius: 3px 0 0 0;
+        }
+
+        .critic .diagram-percent {
+            background: linear-gradient(to right, rgb(200, 46, 32) 28%, rgb(244, 244, 244) 28% 100%);
+            position: relative;
+        }
+
+        .critic .diagram-percent::before {
+            content: '';
+            display: block;
+            width: 33%;
+            height: 5px;
+            background: rgb(216, 118, 110);
+            position: absolute;
+            top: 100%;
+            transform: translate(0, -100%);
+            border-radius: 0 0 0 3px;
+        }
+
+        [src="human_full.svg"] {
+            width: 13px;
+            height: 13px;
+            margin-left: 5px;
+            margin-bottom: 3px;
+            vertical-align: bottom;
+        }
+
+        .circleDiagram-content::before {
+            content:'';
+            width: 30px;
+            height: 270px;
+            border: 2px solid var(--dark-grey-color);
+            border-right: transparent;
+            border-radius: 10px 0 0 10px;
+            position: absolute;
+            top: 50%;
+            left: -50px;
+        }
+
+        .circleDiagram-content::after {
+            content:'';
+            background: var(--dark-grey-color);
+            width: 20px;
+            height: 2px;
+            position: absolute;
+            top: 350px;
+            left: -50px;
+        }
+
+        .skeptic {
+            position: relative;
+        }
+
+        .skeptic::before {
+            content:'+';
+            font-size: 24px;
+            padding-bottom: 2px;
+            color: var(--dark-grey-color);
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: -20px;
+            left: -45px;
+            background: white;
+        }
+
+        .skeptic::after {
+            content:'';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 10px;
+            left: -24px;
+            background: white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div class="circleDiagram">
+            <div class="circleDiagram-content">
+                <div class="circleDiagram-content-text">
+
+                    <div class="flag-image">
+                        <img src="loyalty.svg" alt="loyalty">
+                    </div>
+
+                    <p class="percent">72.<span class="percent">7</span><sup class="percent">%</sup></p>
+                    <p>Лояльность</p>
+                    <p class="yellow-text">ниже среднего</p>
+                    <p class="grey-text">по отрасли: FMCG<br>значений слева от медианы<br>52.0% - 83.1%</p>
+                    <div class="triangle-block">
+                        <div class="triangle"></div>
+                        <p>3.1</p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- CircleDiagram -->
+
+        <div class="squareDiagram">
+            <div class="promouter">
+                <p>Промоутеры</p>
+                <p>32.0%<br><span class="grey-text">81</span><img src="human_full.svg" alt="icon"></p>
+                <div class="diagram-percent">+1.2%</div>
+            </div>
+            <div class="skeptic">
+                <p>Скептики</p>
+                <p>39.1%<br><span class="grey-text">8</span><img src="human_full.svg" alt="icon"></p>
+                <div class="diagram-percent">+4.8%</div>
+            </div>
+            <div class="critic">
+                <p>Критики</p>
+                <p>79.8%<br><span class="grey-text">7</span><img src="human_full.svg" alt="icon"></p>
+                <div class="diagram-percent">-9.7%</div>
+            </div>
+        </div> <!-- squareDiagram -->
+
+    </div> <!-- wrapper -->
+
+
+</body>
+
+</html>
